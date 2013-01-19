@@ -1,0 +1,28 @@
+{
+  "author": "Sherwin Yu <sherwinxyu@gmail.com>",
+  "name": "HUMON",
+  "description": "Implementation of a HUMON parser. HUMON is a human input friendly object notation that compiles to JSON.",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/sherwinyu/humon.git"
+  },
+  "main": "lib/main.js",
+  "scripts": {
+    "test": "mocha test/*.js"
+  },
+  "engines": {
+    "node": "~0.5.10 || 0.5.10-pre || 0.6"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "mocha": "",
+    "should": ""
+  },
+  "readmeFilename": "README.md",
+  "gitHead": "8a5e65319afa806e5cd2b1cf41fa64893c78adba",
+  "directories": {
+    "test": "test"
+  },
+  "license": "BSD"
+}

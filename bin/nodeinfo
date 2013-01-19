@@ -1,0 +1,4 @@
+#!/usr/bin/env node
+require("coffee-script");
+var nodeinfo = require("../lib/nodeinfo");
+nodeinfo.run();
