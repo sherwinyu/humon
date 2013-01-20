@@ -1,6 +1,11 @@
 {Rewriter, INVERSES} = require './humon_rewriter'
 {count, starts, compact, last} = require './helpers'
 
+d = (args...) ->
+  if $debug?
+    d args
+  args
+
 exports.Lexer = class Lexer
 
   # **tokenize** is the Lexer's main method. Scan by attempting to match tokens
@@ -32,10 +37,10 @@ exports.Lexer = class Lexer
     # `@literalToken` is the fallback catch-all.
     i = 0
     while @chunk = code[i..]
-      console.log ""
-      console.log ""
-      console.log "########i: #{i} ########"
-      console.log "#### chunk:|#{@chunk[0..5]}|"
+      d ""
+      d ""
+      d "########i: #{i} ########"
+      d "#### chunk:|#{@chunk[0..5]}|"
       ret = 
         (
           
@@ -54,7 +59,7 @@ exports.Lexer = class Lexer
           # @literalToken() or
           @implicitStringToken()
           )
-      console.log "## #{last @tokens}"
+      d "## #{last @tokens}"
       if ret == 0 then break
       i += ret
       debugger
@@ -68,7 +73,7 @@ exports.Lexer = class Lexer
   ## identifier
   keyToken: ->
     return 0 unless match = OBJ_KEY.exec @chunk
-    console.log "#### obj_key:: |#{match[0]}"
+    d "#### obj_key:: |#{match[0]}"
     @token 'KEY', match[0]
     match[0].length
 
@@ -76,14 +81,16 @@ exports.Lexer = class Lexer
 
   explicitStringToken: ->
     return 0 unless match = EXPLICIT_STR.exec @chunk
-    console.log "#### match::|#{match[0]}|"
-    @token 'STRING', (string = match[0])
-    string.length
+    d "#### match::|#{match[1]}|"
+    @token 'STRING', (string = match[1])
+    last(@tokens).implicit = no
+
+    string.length + 2
 
   implicitStringToken: ->
     return 0 unless match = IMPLICIT_STR_STRICT.exec @chunk
     string = match[0]
-    console.log "#### implicit str::|#{string}|"
+    d "#### implicit str::|#{string}|"
     @token 'STRING', "#{string}" 
     last(@tokens).implicit = yes
     string.length
@@ -91,7 +98,7 @@ exports.Lexer = class Lexer
   symbolLiteralToken: ->
     return 0 unless match = SYMBOL_LITERAL.exec @chunk
     string = match[0]
-    console.log "#### symbol literal |#{string}|"
+    d "#### symbol literal |#{string}|"
     # @token 'SYMBOL', string
     @token string, string
     return 1
@@ -108,7 +115,7 @@ exports.Lexer = class Lexer
 
 
   SYMBOL_LITERAL = /^[:,;%{}[\]]/
-  EXPLICIT_STR = /^"[^"]*"/
+  EXPLICIT_STR = /^"([^"]*)"/
   IMPLICIT_STR_STRICT = /^[\w ]+/
   IMPLICIT_STR = /^[^\n]+/
     
@@ -324,7 +331,7 @@ exports.Lexer = class Lexer
   lineToken: ->
     return 0 unless match = MULTI_DENT.exec @chunk
     indent = match[0]
-    console.log "#### matched mult-dent: |#{indent}#|"
+    d "#### matched mult-dent: |#{indent}#|"
     @line += count indent, '\n'
     @seenFor = no
     size = indent.length - 1 - indent.lastIndexOf '\n'

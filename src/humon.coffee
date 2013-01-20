@@ -9,8 +9,8 @@
 # '
 # z.lexer = 
 
-@d = (args...) ->
-  if $debug
+d = (args...) ->
+  if $debug?
     console.log args
   args
 
@@ -25,15 +25,15 @@ parser.lexer =
     ""
 
 
-doit = (code) ->
+parse = (code) ->
   tokens = lex code
-  @d "##### input code: #####"
-  @d code
-  @d "\n\n"
-  @d "##### input tokens: #####"
-  @d tokens 
-  @d "\n\n"
-  @d "##### parsing: #####"
+  d "##### input code: #####"
+  d code
+  d "\n\n"
+  d "##### input tokens: #####"
+  d tokens 
+  d "\n\n"
+  d "##### parsing: #####"
   parser.parse tokens
   # @otherTokens = []
   # console.log parser.parse(@tokens.slice 0, @tokens.length)
@@ -47,5 +47,5 @@ parseTokens = (tokens) ->
 
 exports.lex = lex
 exports.parseTokens = parseTokens
-exports.parse = doit
-exports.d = @d
+exports.parse = parse
+exports.d = d
