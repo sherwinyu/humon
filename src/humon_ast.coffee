@@ -111,7 +111,7 @@ createObject = (arg)->
   ]
   ###
 
-exports.grammar =
+grammar =
   tokens: "STRING NUMBER { } [ ] , ; % : TRUE FALSE NULL INDENT OUTDENT"
   start: "Root"
   bnf:  @bnf
@@ -152,10 +152,20 @@ options =
   moduleType: "commonjs"
   moduleName: "jsonparse"
 
+generator = new Generator(grammar, options)
+
+exports.generator = generator
+exports.generate = generator.generate
+exports.main = main = (args) ->
+  generatedCode = generator.generate()
+  # console.log generatedCode
+  # fs.writeFile "parser.js", code
+###
 exports.main = main = (args) ->
   fs = require("fs")
-  console.log exports.grammar.bnf
-  code = new Generator(exports.grammar, options).generate()
+  console.log grammar.bnf
+  code = new Generator(grammar, options).generate()
   fs.writeFile "parser.js", code
 
 exports.main require("sys").args  if require.main is module
+###

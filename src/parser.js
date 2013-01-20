@@ -237,6 +237,7 @@ if (typeof require !== 'undefined' && typeof exports !== 'undefined') {
 exports.parser = jsonparse;
 exports.Parser = jsonparse.Parser;
 exports.parse = function () { return jsonparse.parse.apply(jsonparse, arguments); }
+/*
 exports.main = function commonjsMain(args) {
     if (!args[1])
         throw new Error('Usage: '+args[0]+' FILE');
@@ -251,4 +252,5 @@ exports.main = function commonjsMain(args) {
 if (typeof module !== 'undefined' && require.main === module) {
   exports.main(typeof process !== 'undefined' ? process.argv.slice(1) : require("system").args);
 }
+*/
 }

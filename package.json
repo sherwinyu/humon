@@ -1,5 +1,5 @@
 {
-  "name": "HUMON",
+  "name": "humon",
   "version": "0.0.0",
   "description": "Implementation of a HUMON parser. HUMON is a human input friendly object notation that compiles to JSON",
   "main": "lib/index.js",

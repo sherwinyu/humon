@@ -1,4 +1,4 @@
-{parser}         = require './parser'
+{parser}         = require '../lib/parser'
 {Lexer} = require "./humon_lexer.coffee"
 
 # console.log parser
@@ -45,7 +45,15 @@ lex = (code) ->
 parseTokens = (tokens) ->
   parser.parse tokens
 
-exports.lex = lex
-exports.parseTokens = parseTokens
-exports.parse = parse
-exports.d = d
+if exports?
+  exports.lex = lex
+  exports.parseTokens = parseTokens
+  exports.parse = parse
+  exports.d = d
+
+if window?
+  window.lex = lex
+  window.parseTokens = parseTokens
+  window.parse = parse
+  window.d = d
+
