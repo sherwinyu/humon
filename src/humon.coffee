@@ -1,6 +1,5 @@
 {parser}         = require './parser'
 {Lexer} = require "./humon_lexer.coffee"
-fsUtil = require 'fs'
 
 # console.log parser
 # input = ' "aba", 4, {"a": 6}'
@@ -27,10 +26,6 @@ parser.lexer =
   upcomingInput: ->
     ""
 
-filePath = "in.coffee"
-fsUtil.readFile filePath, (err,data) =>
-  @source = data.toString()
-  doit @source
 
 doit = (code) ->
   tokens = lex code
@@ -41,7 +36,7 @@ doit = (code) ->
   console.log tokens 
   console.log "\n\n"
   console.log "##### parsing: #####"
-  console.log parser.parse tokens
+  parser.parse tokens
   # @otherTokens = []
   # console.log parser.parse(@tokens.slice 0, @tokens.length)
 

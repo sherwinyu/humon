@@ -2,19 +2,20 @@
   "name": "HUMON",
   "version": "0.0.0",
   "description": "Implementation of a HUMON parser. HUMON is a human input friendly object notation that compiles to JSON",
-  "main": "index.js",
+  "main": "lib/index.js",
   "directories": {
     "test": "test"
   },
   "dependencies": {
-    "should": "~1.2.1",
     "jison": ""
   },
   "devDependencies": {
-    "mocha": "~1.8.1"
+    "jasmine-node": ""
   },
   "scripts": {
-    "test": "mocha"
+    "pretest": "cake build",
+    "prepublish": "cake build",
+    "test": "jasmine-node --coffee spec/"
   },
   "repository": {
     "type": "git",
