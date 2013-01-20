@@ -1,9 +1,10 @@
 {exec} = require 'child_process'
 
-build = ->
+build = (callback)->
   removeJS -> 
     compile ->
-      makeParser()
+      makeParser ->
+        callback() if callback
 
 compile = (callback) ->
   exec 'mkdir -p lib', (err, stdout, stderr) ->
@@ -30,17 +31,12 @@ cleanParserFile = (callback) ->
   lines = source.toString().split("\n")
   lines.splice(-16, 15)
   code = lines.join "\n"
-  console.log lines.slice -40
   fs.writeFileSync 'lib/parser.js', code
   callback() if callback
 
 browserify = (callback = console.log) ->
-  console.log 'derp'
   findExecutable 'browserify', ->
-    console.log 'derp'
-    exec 'pwd'
     exec "browserify src/humon.coffee -o humon.js", (err, stdout) ->
-      console.log 'derp'
 
 
 
@@ -49,7 +45,7 @@ task 'test', 'Test project', -> test()
 task 'makeParser', 'Invoke jison to write the parser', -> makeParser()
 task 'cleanParserFile', 'remove exports.main from parser.js', -> cleanParserFile()
 task 'clean', 'Clean lib', -> removeJS()
-task 'browserify', 'browserify and compress to one file', -> browserify()
+task 'browserify', 'browserify and compress to one file', -> build browserify
 
 task 'publish', 'Publish project to npm', -> publish()
 task 'dev-install', 'Install developer dependencies', -> dev_install()
