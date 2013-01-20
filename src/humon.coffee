@@ -9,13 +9,11 @@
 # '
 # z.lexer = 
 
-class ObjectProxy
+@d = (args...) ->
+  if $debug
+    console.log args
+  args
 
-
-class parser.yy.ObjectProxy 
-  constructor: (args) ->
-    console.log 'hi!', args
-    @[args.key] = args.val
 
 parser.lexer =
   lex: ->
@@ -29,13 +27,13 @@ parser.lexer =
 
 doit = (code) ->
   tokens = lex code
-  console.log "##### input code: #####"
-  console.log code
-  console.log "\n\n"
-  console.log "##### input tokens: #####"
-  console.log tokens 
-  console.log "\n\n"
-  console.log "##### parsing: #####"
+  @d "##### input code: #####"
+  @d code
+  @d "\n\n"
+  @d "##### input tokens: #####"
+  @d tokens 
+  @d "\n\n"
+  @d "##### parsing: #####"
   parser.parse tokens
   # @otherTokens = []
   # console.log parser.parse(@tokens.slice 0, @tokens.length)
@@ -50,3 +48,4 @@ parseTokens = (tokens) ->
 exports.lex = lex
 exports.parseTokens = parseTokens
 exports.parse = doit
+exports.d = @d
