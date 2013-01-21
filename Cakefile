@@ -36,7 +36,7 @@ cleanParserFile = (callback) ->
 
 browserify = (callback = console.log) ->
   findExecutable 'browserify', ->
-    exec "browserify src/humon.coffee -o humon.js", (err, stdout) ->
+    exec "browserify src/humon.coffee -o ~/projects/sysys/app/assets/javascripts/vendor/humon.js", (err, stdout) ->
 
 
 

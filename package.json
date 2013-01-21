@@ -10,12 +10,13 @@
     "jison": ""
   },
   "devDependencies": {
-    "jasmine-node": ""
+    "jasmine-node": "",
+    "sinon": "1.5.2"
   },
   "scripts": {
     "pretest": "cake build",
     "prepublish": "cake build",
-    "test": "jasmine-node --coffee spec/"
+    "test": "jasmine-node --coffee specs/"
   },
   "repository": {
     "type": "git",

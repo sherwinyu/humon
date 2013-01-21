@@ -1,5 +1,6 @@
 # jasmine = require('jasmine-node')
 humon = require("../src/humon")
+sinon = require 'sinon'
 
 parse = humon.parse
 describe "humon.parse", ->
@@ -32,18 +33,18 @@ describe "humon.parse", ->
 
     it "should be valid with multiple key value pairs", ->
       code = """
-              a: 5
-              g: 6
-              """
+             a: 5
+             g: 6
+             """
       expect(parse code).toEqual({a: 5, g: 6})
 
   describe "nested hashes", ->
     it "should be valid with multi line nesting", ->
       code = """
-              a: 5
-              nested:
-                a: 5
-                b: 6
-              g: 6
-              """
+             a: 5
+             nested:
+               a: 5
+               b: 6
+             g: 6
+             """
       expect(parse code).toEqual({a: 5, nested: {a: 5, b: 6}, g: 6})

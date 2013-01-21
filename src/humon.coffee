@@ -1,5 +1,6 @@
 {parser}         = require '../lib/parser'
 {Lexer} = require "./humon_lexer.coffee"
+{recurser} = require "./json2humon"
 
 # console.log parser
 # input = ' "aba", 4, {"a": 6}'
@@ -50,10 +51,13 @@ if exports?
   exports.parseTokens = parseTokens
   exports.parse = parse
   exports.d = d
+  exports.json2humon = recurser.json2humon
 
 if window?
-  window.lex = lex
-  window.parseTokens = parseTokens
-  window.parse = parse
-  window.d = d
+  window.humon = {}
+  window.humon.lex = lex
+  window.humon.parseTokens = parseTokens
+  window.humon.parse = parse
+  window.humon.d = d
+  window.humon.json2humon = recurser.json2humon
 
