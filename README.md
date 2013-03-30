@@ -6,7 +6,7 @@ Building
 =======
 `cake makeParser` invokes jison to write the parser to `lib/parser.js`
 `cake build` removes all js from `lib/`, compiles javascript to `lib/`, and remakes the parser.
-`cake browserify` packages the parser js file.
+`cake bundle` bundles humon.coffee into a single file (contains the lexer, parser, and recurser
 
 Tests
 =====

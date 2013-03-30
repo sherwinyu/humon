@@ -38,10 +38,12 @@ cleanParserFile = (callback) ->
   fs.writeFileSync 'lib/parser.js', code
   callback() if callback
 
-browserify = (callback = console.log) ->
-  # findExecutable 'browserify', ->
-  console.log 'zup'
-  exec "browserify src/humon.coffee -o ~/projects/sysys/app/assets/javascripts/vendor/humon.js", (err, stdout) ->
+bundle = (callback = console.log) ->
+  browserify = require 'browserify'
+  b = browserify 'src/humon.coffee'
+  code = b.bundle()
+  fs = require "fs"
+  fs.writeFileSync 'lib/humon.js', code
 
 task 'build', 'Build lib from src', -> build()
 task 'test', 'Test project', -> test()
@@ -49,7 +51,7 @@ task 'makeAndCleanParser', 'Invoke jison to write the parser and clean it', -> m
 task 'makeParser', 'Invoke jison to write the parser', -> makeParser()
 task 'cleanParserFile', 'remove exports.main from parser.js', -> cleanParserFile()
 task 'clean', 'Clean lib', -> removeJS()
-task 'browserify', 'browserify and compress to one file', -> browserify()
+task 'bundle', 'bundle humon.coffee into a single .js library (output: lib/humon.js)', -> bundle()
 
 task 'publish', 'Publish project to npm', -> publish()
 task 'dev-install', 'Install developer dependencies', -> dev_install()
