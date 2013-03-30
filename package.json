@@ -1,34 +1,36 @@
 {
   "name": "humon",
-  "version": "0.0.0",
-  "description": "Implementation of a HUMON parser. HUMON is a human input friendly object notation that compiles to JSON",
-  "main": "lib/index.js",
-  "directories": {
-    "test": "test"
-  },
-  "dependencies": {
-    "jison": ""
-  },
-  "devDependencies": {
-    "jasmine-node": "",
-    "sinon": "1.5.2"
-  },
-  "scripts": {
-    "pretest": "cake build",
-    "prepublish": "cake build",
-    "test": "jasmine-node --coffee specs/"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/sherwinyu/humon.git"
-  },
-  "keywords": [
-    "object",
-    "notation",
-    "json"
-  ],
-  "author": "Sherwin Yu",
-  "license": "BSD",
-  "readmeFilename": "README.md",
-  "gitHead": "8a5e65319afa806e5cd2b1cf41fa64893c78adba"
+    "version": "0.0.0",
+    "description": "Implementation of a HUMON parser. HUMON is a human input friendly object notation that compiles to JSON",
+    "main": "lib/index.js",
+    "directories": {
+      "test": "test"
+    },
+    "dependencies": {
+      "jison": "~0.4.2"
+    },
+    "devDependencies": {
+      "jasmine-node": "",
+      "sinon": "1.5.2"
+    },
+    "scripts": {
+      "pretest": "cake build",
+      "prepublish": "cake build",
+      "test": "jasmine-node --coffee specs/"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git://github.com/sherwinyu/humon.git"
+    },
+    "keywords": [
+      "object",
+      "notation",
+      "json"
+      ],
+    "author": {
+      "name": "Sherwin Yu"
+    },
+    "license": "BSD",
+    "readmeFilename": "README.md",
+    "gitHead": "8a5e65319afa806e5cd2b1cf41fa64893c78adba"
 }

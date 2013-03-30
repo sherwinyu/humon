@@ -38,8 +38,6 @@ browserify = (callback = console.log) ->
   findExecutable 'browserify', ->
     exec "browserify src/humon.coffee -o ~/projects/sysys/app/assets/javascripts/vendor/humon.js", (err, stdout) ->
 
-
-
 task 'build', 'Build lib from src', -> build()
 task 'test', 'Test project', -> test()
 task 'makeParser', 'Invoke jison to write the parser', -> makeParser()
