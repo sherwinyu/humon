@@ -62,7 +62,6 @@ exports.Lexer = class Lexer
       d "## #{last @tokens}"
       if ret == 0 then break
       i += ret
-      debugger
 
     @closeIndentation()
     @error "missing #{tag}" if tag = @ends.pop()

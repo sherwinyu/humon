@@ -3,7 +3,7 @@
 build = (callback)->
   removeJS -> 
     compile ->
-      makeAndCleanParser ->
+      makeParser ->
         callback() if callback
 
 compile = (callback) ->
@@ -39,8 +39,9 @@ cleanParserFile = (callback) ->
   callback() if callback
 
 browserify = (callback = console.log) ->
-  findExecutable 'browserify', ->
-    exec "browserify src/humon.coffee -o ~/projects/sysys/app/assets/javascripts/vendor/humon.js", (err, stdout) ->
+  # findExecutable 'browserify', ->
+  console.log 'zup'
+  exec "browserify src/humon.coffee -o ~/projects/sysys/app/assets/javascripts/vendor/humon.js", (err, stdout) ->
 
 task 'build', 'Build lib from src', -> build()
 task 'test', 'Test project', -> test()
@@ -48,7 +49,7 @@ task 'makeAndCleanParser', 'Invoke jison to write the parser and clean it', -> m
 task 'makeParser', 'Invoke jison to write the parser', -> makeParser()
 task 'cleanParserFile', 'remove exports.main from parser.js', -> cleanParserFile()
 task 'clean', 'Clean lib', -> removeJS()
-task 'browserify', 'browserify and compress to one file', -> build browserify
+task 'browserify', 'browserify and compress to one file', -> browserify()
 
 task 'publish', 'Publish project to npm', -> publish()
 task 'dev-install', 'Install developer dependencies', -> dev_install()
@@ -79,7 +80,8 @@ dev_install = (callback = console.log) ->
         callback(stdout)
 ###
 
-findExecutable = (executable, callback) ->
-  exec "test `which #{executable}` || echo 'Missing #{executable}'", (err, stdout, stderr) ->
-    throw new Error(err) if err
-    callback() if callback
+# findExecutable = (executable, callback) ->
+# console.log 'winkle'
+# exec "test `which #{executable}` || echo 'Missing #{executable}'", (err, stdout, stderr) ->
+# throw new Error(err) if err
+# callback() if callback
