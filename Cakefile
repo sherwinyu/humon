@@ -3,7 +3,7 @@
 build = (callback)->
   removeJS -> 
     compile ->
-      makeParser ->
+      makeAndCleanParser ->
         callback() if callback
 
 compile = (callback) ->
@@ -23,6 +23,10 @@ makeParser = (callback) ->
   fs = require("fs")
   generatedCode = generator.generate()
   fs.writeFileSync 'lib/parser.js', generatedCode
+
+
+makeAndCleanParser = (callback) ->
+  makeParser()
   cleanParserFile callback
 
 cleanParserFile = (callback) ->
@@ -40,6 +44,7 @@ browserify = (callback = console.log) ->
 
 task 'build', 'Build lib from src', -> build()
 task 'test', 'Test project', -> test()
+task 'makeAndCleanParser', 'Invoke jison to write the parser and clean it', -> makeAndCleanParser()
 task 'makeParser', 'Invoke jison to write the parser', -> makeParser()
 task 'cleanParserFile', 'remove exports.main from parser.js', -> cleanParserFile()
 task 'clean', 'Clean lib', -> removeJS()
