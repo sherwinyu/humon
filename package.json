@@ -11,7 +11,7 @@
     },
     "devDependencies": {
       "jasmine-node": "",
-      "sinon": "1.5.2"
+      "sinon": "1.5.2",
       "browserify": "~2.10.2"
     },
     "scripts": {
