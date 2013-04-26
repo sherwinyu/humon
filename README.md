@@ -5,13 +5,15 @@ Humon is a human friendly object specification notation. Like JSON, but less ann
 *NOTE*: this is nowhere NEAR production ready. It was spun out of a personal project; updates pending.
 
 HUMON parses down to json. It's based heavily off of the [coffee script grammar](http://coffeescript.org/documentation/docs/grammar.html)
-with a few difference:
-- string inference
-- list inference
+with a few differences:
+- string inference: fewer quotation marks!
+- list inference: fewer square brackets!
 
 Coming soon:
 - Date objects
 - YAML compatability
+
+More updates at [Humon project homepage](http://github.com/sherwinyu/humon)
 
 Building
 =======
